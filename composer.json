@@ -17,7 +17,7 @@
     "require": {
         "php": ">=5.3.3",
         "react/event-loop": "~0.4",
-        "ronanguilloux/php-gpio": "~1.0",
+        "ronanguilloux/php-gpio": "~1.0@dev",
         "symfony/console": "~2.3",
         "symfony/framework-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.3",
