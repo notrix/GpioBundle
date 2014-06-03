@@ -1,0 +1,38 @@
+{
+    "name": "notrix/gpio-bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "description": "Raspberry PI gpio bundle",
+    "keywords": ["raspberry", "pi", "gpio", "pir"],
+    "authors": [
+        {
+            "name" : "Vaidas Lažauskas",
+            "email" : "vaidas@notrix.lt",
+            "homepage": "http://notrix.lt"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "Notrix\\GpioBundle\\": "src/Notrix/GpioBundle" }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/notrix/php-gpio"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "react/event-loop": "dev-master",
+        "ronanguilloux/php-gpio": "dev-master",
+        "symfony/console": "~2.3",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.3",
+        "symfony/process": "~2.3"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
+    }
+}

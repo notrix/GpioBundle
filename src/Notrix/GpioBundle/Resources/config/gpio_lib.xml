@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="notrix_gpio.lib_pi.class">PhpGpio\Pi</parameter>
+        <parameter key="notrix_gpio.lib_gpio.class">PhpGpio\Gpio</parameter>
+    </parameters>
+
+    <services>
+        <service id="notrix_gpio.lib_pi" class="%notrix_gpio.lib_pi.class%" />
+        <service id="notrix_gpio.lib_gpio" class="%notrix_gpio.lib_gpio.class%" />
+    </services>
+</container>

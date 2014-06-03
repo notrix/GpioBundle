@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="notrix_gpio.gpio_io_controller.class">Notrix\GpioBundle\Controller\InputOutputController</parameter>
+        <parameter key="notrix_gpio.gpio_event_command.class">Notrix\GpioBundle\Command\GpioEventCommand</parameter>
+        <parameter key="notrix_gpio.gpio_input_command.class">Notrix\GpioBundle\Command\GpioInputCommand</parameter>
+        <parameter key="notrix_gpio.gpio_output_command.class">Notrix\GpioBundle\Command\GpioOutputCommand</parameter>
+        <parameter key="notrix_gpio.gpio_setup_command.class">Notrix\GpioBundle\Command\GpioSetupCommand</parameter>
+        <parameter key="notrix_gpio.gpio_watch_command.class">Notrix\GpioBundle\Command\GpioWatchCommand</parameter>
+        <parameter key="notrix_gpio.plain_pin_manager.class">Notrix\GpioBundle\Service\PinManager</parameter>
+        <parameter key="notrix_gpio.sudo_pin_manager.class">Notrix\GpioBundle\Service\SudoPinManager</parameter>
+        <parameter key="notrix_gpio.event_dispatcher.class">Notrix\GpioBundle\Service\EventDispatcher</parameter>
+        <parameter key="notrix_gpio.pin_watcher.class">Notrix\GpioBundle\Service\PinWatcher</parameter>
+        <parameter key="notrix_gpio.pin_watcher.interval"></parameter>
+    </parameters>
+
+    <services>
+        <service id="notrix_gpio.gpio_io_controller" class="%notrix_gpio.gpio_io_controller.class%">
+            <argument type="service" id="notrix_gpio.pin_manager" />
+        </service>
+
+        <service id="notrix_gpio.gpio_event_command" class="%notrix_gpio.gpio_event_command.class%">
+            <tag name="console.command" />
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+            <argument type="service" id="notrix_gpio.event_dispatcher" />
+        </service>
+
+        <service id="notrix_gpio.gpio_input_command" class="%notrix_gpio.gpio_input_command.class%">
+            <tag name="console.command" />
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+        </service>
+
+        <service id="notrix_gpio.gpio_output_command" class="%notrix_gpio.gpio_output_command.class%">
+            <tag name="console.command" />
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+        </service>
+
+        <service id="notrix_gpio.gpio_setup_command" class="%notrix_gpio.gpio_setup_command.class%">
+            <tag name="console.command" />
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+        </service>
+
+        <service id="notrix_gpio.gpio_watch_command" class="%notrix_gpio.gpio_watch_command.class%">
+            <tag name="console.command" />
+            <argument type="service" id="notrix_gpio.pin_watcher" />
+        </service>
+
+        <service id="notrix_gpio.event_dispatcher" class="%notrix_gpio.event_dispatcher.class%">
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="gpio" />
+        </service>
+
+        <service id="notrix_gpio.plain_pin_manager" class="%notrix_gpio.plain_pin_manager.class%" lazy="true">
+            <argument type="service" id="notrix_gpio.lib_gpio" />
+            <argument type="collection" />
+            <argument type="collection" />
+            <argument type="collection" />
+            <argument type="service" id="logger" />
+            <call method="setupPins" />
+            <tag name="monolog.logger" channel="gpio" />
+        </service>
+
+        <service id="notrix_gpio.sudo_pin_manager" class="%notrix_gpio.sudo_pin_manager.class%">
+            <argument>%kernel.root_dir%</argument>
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="gpio" />
+        </service>
+
+        <service id="notrix_gpio.pin_watcher" class="%notrix_gpio.pin_watcher.class%">
+            <argument type="service">
+                <service class="React\EventLoop\Factory" />
+            </argument>
+            <argument type="service" id="notrix_gpio.plain_pin_manager" />
+            <argument type="service" id="notrix_gpio.event_dispatcher" />
+            <argument>%notrix_gpio.pin_watcher.interval%</argument>
+            <argument type="service" id="logger" />
+            <tag name="monolog.logger" channel="gpio" />
+        </service>
+    </services>
+</container>
