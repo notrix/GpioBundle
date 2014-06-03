@@ -22,14 +22,13 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "react/event-loop": "dev-master",
-        "ronanguilloux/php-gpio": "dev-master",
+        "react/event-loop": "~0.4",
+        "ronanguilloux/php-gpio": "~1.0",
         "symfony/console": "~2.3",
         "symfony/framework-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.3",
         "symfony/process": "~2.3"
     },
-    "minimum-stability": "stable",
     "extra": {
         "branch-alias": {
             "dev-master": "0.x-dev"
