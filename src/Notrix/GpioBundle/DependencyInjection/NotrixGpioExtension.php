@@ -89,6 +89,7 @@ class NotrixGpioExtension extends Extension
             }
             $inPins[$slug] = $pin;
         }
+
         return $inPins;
     }
 
@@ -107,6 +108,7 @@ class NotrixGpioExtension extends Extension
             $pin = new Definition('Notrix\GpioBundle\Entity\OutputPin', array($pinNr, $slug));
             $outPins[$slug] = $pin;
         }
+
         return $outPins;
     }
 }

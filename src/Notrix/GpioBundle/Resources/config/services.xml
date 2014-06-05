@@ -5,7 +5,6 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="notrix_gpio.gpio_io_controller.class">Notrix\GpioBundle\Controller\InputOutputController</parameter>
         <parameter key="notrix_gpio.gpio_event_command.class">Notrix\GpioBundle\Command\GpioEventCommand</parameter>
         <parameter key="notrix_gpio.gpio_input_command.class">Notrix\GpioBundle\Command\GpioInputCommand</parameter>
         <parameter key="notrix_gpio.gpio_output_command.class">Notrix\GpioBundle\Command\GpioOutputCommand</parameter>
@@ -19,10 +18,6 @@
     </parameters>
 
     <services>
-        <service id="notrix_gpio.gpio_io_controller" class="%notrix_gpio.gpio_io_controller.class%">
-            <argument type="service" id="notrix_gpio.pin_manager" />
-        </service>
-
         <service id="notrix_gpio.gpio_event_command" class="%notrix_gpio.gpio_event_command.class%">
             <tag name="console.command" />
             <argument type="service" id="notrix_gpio.plain_pin_manager" />

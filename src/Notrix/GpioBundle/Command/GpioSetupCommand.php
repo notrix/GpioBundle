@@ -55,7 +55,6 @@ class GpioSetupCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->pinManager->setupPins();
-
         $output->writeln('Setup has finished');
     }
 }

@@ -71,7 +71,6 @@ class GpioOutputCommand extends Command
         }
 
         $this->pinManager->setPinOutput($pin, $status);
-
         $output->writeln(sprintf('Output of pin %s set to: %s', $pin->getSlug(), $status));
     }
 }

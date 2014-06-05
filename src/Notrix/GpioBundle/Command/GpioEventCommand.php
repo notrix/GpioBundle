@@ -79,7 +79,6 @@ class GpioEventCommand extends Command
         }
 
         $event = $this->eventDispatcher->dispatch($pin, $status);
-
         $output->writeln('Event triggered: ' . $event->getEventName());
     }
 }

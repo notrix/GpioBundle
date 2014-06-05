@@ -66,7 +66,6 @@ class GpioInputCommand extends Command
         }
 
         $result = $this->pinManager->getPinInput($pin);
-
         $output->writeln($result);
     }
 }
