@@ -46,7 +46,7 @@ notrix_gpio:
             slug: red_led
 ```
 
-**Note:** As this bundle has a dependancy on ronanguilloux/php-gpio development lib version, your project minimum stability has to be 'dev' or include this vendor as a dependancy to your project with @dev stability flag
+**Note:** As this bundle has a dependancy on [ronanguilloux/php-gpio](https://packagist.org/packages/ronanguilloux/php-gpio) development lib version, your project minimum stability has to be 'dev' or include this vendor as a dependancy to your project with @dev stability flag
 
 Usage
 --
